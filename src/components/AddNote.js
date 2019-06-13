@@ -2,6 +2,7 @@ import React from "react";
 import ValidationError from "../ValidationError";
 import NotefulContext from "../NotefulContext";
 import "./AddNote.css";
+import config from '../config';
 
 export default class AddNote extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class AddNote extends React.Component {
     this.state = {
       content: "",
       folderid: "",
-      modified: new Date(),
+      date_modified: new Date(),
       name: "",
       formValid: false,
       nameValid: false,
@@ -39,23 +40,23 @@ export default class AddNote extends React.Component {
     this.setState({ folderid });
   }
 
-  addModified(modified) {
+  addModified(date_modified) {
     this.setState({
-      modified
+      date_modified
     });
   }
 
   noteSubmitHandle = e => {
     e.preventDefault();
-    const note = (({ content, folderid, id, modified, name }) => ({
+    const note = (({ content, folderid, id, date_modified, name }) => ({
       content,
       folderid,
       id,
-      modified,
+      date_modified,
       name
     }))(this.state);
 
-    fetch(`https://shielded-bayou-42227.herokuapp.com/api/notes`, {
+    fetch(`${config.API_ENDPOINT}/api/notes`, {
       method: "POST",
       body: JSON.stringify(note),
       headers: {
@@ -72,7 +73,7 @@ export default class AddNote extends React.Component {
         this.setState({
           content: "",
           folderid: "",
-          modified: new Date(),
+          date_modified: new Date(), 
           name: ""
         });
         this.context.addNote(note);

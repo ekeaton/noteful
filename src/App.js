@@ -19,7 +19,7 @@ class App extends React.Component {
   componentDidMount() {
     Promise.all([
       fetch(`${config.API_ENDPOINT}/api/folders`),
-            fetch(`${config.API_ENDPOINT}/api/notes`)
+      fetch(`${config.API_ENDPOINT}/api/notes`)
     ])
       .then(([folderRes, noteRes]) => {
         if (!folderRes.ok) return folderRes.json().then(e => Promise.reject(e));

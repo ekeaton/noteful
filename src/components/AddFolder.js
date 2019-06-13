@@ -2,6 +2,7 @@ import React from "react";
 import NotefulContext from "../NotefulContext";
 import ValidationError from "../ValidationError";
 import "./AddFolder.css";
+import config from '../config';
 
 export default class AddFolder extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class AddFolder extends React.Component {
     e.preventDefault();
     const { id, name } = this.state;
     const folder = { id, name };
-    fetch(`https://shielded-bayou-42227.herokuapp.com/api/folders`, {
+    fetch(`${config.API_ENDPOINT}/api/folders`, {
       method: "POST",
       body: JSON.stringify(folder),
       headers: {

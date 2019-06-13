@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import "./NoteContent.css";
 import NotefulContext from "../NotefulContext";
 import PropTypes from "prop-types";
-import config from './config';
+import config from '../config';
 
 class NoteContent extends Component {
   static defaultProps = {
