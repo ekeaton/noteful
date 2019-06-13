@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import "./NoteContent.css";
 import NotefulContext from "../NotefulContext";
 import PropTypes from "prop-types";
+import config from './config';
 
 class NoteContent extends Component {
   static defaultProps = {
@@ -15,7 +16,7 @@ class NoteContent extends Component {
     e.preventDefault();
     const noteId = this.props.id;
 
-    fetch(`https://shielded-bayou-42227.herokuapp.com/api/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}/api/notes/${noteId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"
